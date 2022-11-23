@@ -2,7 +2,7 @@
 {
     public class CardDto
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public decimal Balance { get; set; } = 0.00M;
         public string cardNumber { get; set; } = string.Empty;
         public string? pin { get; set; }

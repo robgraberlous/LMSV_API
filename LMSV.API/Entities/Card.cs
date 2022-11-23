@@ -3,11 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LMSV.API.Entities
 {
+    [Table("card")]
     public class Card
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
         public decimal Balance { get; set; } = 0.00M;
 
         [Required]
@@ -21,7 +22,7 @@ namespace LMSV.API.Entities
         public string cardTypeId { get; set; } = string.Empty;
 
         [Required]
-        public int active { get; set; } = 0;
+        public byte active { get; set; } = 0;
 
         public DateTime? dateActivated { get; set; }
 
