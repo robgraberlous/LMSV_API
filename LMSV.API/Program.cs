@@ -16,6 +16,8 @@ builder.Services.AddDbContext<CardInfoContext>(dbContextOptions => dbContextOpti
 
 builder.Services.AddScoped<ILMSVReportingRepository, LMSVReportingRepository>();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

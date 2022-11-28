@@ -13,13 +13,13 @@ namespace LMSV.API.Controllers
         private readonly ILMSVReportingRepository _lmsvReportingRepository;
         private readonly IMapper _mapper;
 
-        public CardsController(ILMSVReportingRepository lmsvReportingRepository)//,
-            //IMapper mapper)
+        public CardsController(ILMSVReportingRepository lmsvReportingRepository,
+            IMapper mapper)
         {
-            _lmsvReportingRepository = lmsvReportingRepository ?? 
+            _lmsvReportingRepository = lmsvReportingRepository ??
                 throw new ArgumentNullException(nameof(lmsvReportingRepository));
-            //_mapper = mapper ?? 
-            //    throw new ArgumentNullException(nameof(mapper));
+            _mapper = mapper ??
+                throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
@@ -27,29 +27,15 @@ namespace LMSV.API.Controllers
         {
             var cardEntities = await _lmsvReportingRepository.GetCardsAsync();
 
-            var results = new List<CardDto>();
-            int i = 0;
-            foreach (var cardEntity in cardEntities)
-            {
-                if (i++ < 100)
-                    results.Add(new CardDto
-                    {
-                        Id = cardEntity.Id,
-                        Balance = cardEntity.Balance,
-                        cardNumber = cardEntity.cardNumber,
-                        pin = cardEntity.pin,
-                        cardTypeId = cardEntity.cardTypeId,
-                        active = cardEntity.active,
-                        dateActivated = cardEntity.dateActivated,
-                        dateDeactivated = cardEntity.dateDeactivated,
-                        customerId = cardEntity.customerId,
-                        name = cardEntity.name,
-                        createdAt = cardEntity.createdAt,
-                        updatedAt = cardEntity.updatedAt
-                    });
-            }
+            return Ok(_mapper.Map<IEnumerable<CardDto>>(cardEntities.Take(10)));
+        }
 
-            return Ok(results);
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<CardDto>>> GetCard(long id)
+        {
+            var card = await _lmsvReportingRepository.GetCardAsync(id);
+
+            return Ok(_mapper.Map<CardDto>(card));
         }
     }
 }

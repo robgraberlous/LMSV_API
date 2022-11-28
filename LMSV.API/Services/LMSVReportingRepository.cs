@@ -17,5 +17,11 @@ namespace LMSV.API.Services
         {
             return await _context.Cards.OrderBy(c => c.cardNumber).ToListAsync();
         }
+
+        public async Task<Card?> GetCardAsync(long id)
+        {
+            return await _context.Cards
+                .Where(c => c.Id == id).FirstOrDefaultAsync();
+        }
     }
 }
