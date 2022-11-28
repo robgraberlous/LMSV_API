@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LMSV.API.DbContexts
 {
-    public class CardInfoContext : DbContext
+    public class LMSVInfoContext : DbContext
     {
         public DbSet<Card> Cards { get; set; } = null!;
 
-        public CardInfoContext(DbContextOptions<CardInfoContext> options)
+        public LMSVInfoContext(DbContextOptions<LMSVInfoContext> options)
             : base(options)
         {
 

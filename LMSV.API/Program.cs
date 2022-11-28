@@ -14,7 +14,7 @@ builder.Services.AddControllers().AddOData(opt =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<CardInfoContext>(dbContextOptions => dbContextOptions
+builder.Services.AddDbContext<LMSVInfoContext>(dbContextOptions => dbContextOptions
     .UseSqlServer(builder.Configuration["ConnectionStrings:WebApiDatabase"]));
 
 var app = builder.Build();

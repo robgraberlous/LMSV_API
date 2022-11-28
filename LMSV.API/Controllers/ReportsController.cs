@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 namespace LMSV.API.Controllers
 {
     [Route("api/reporting")]
-    public class CardsController : ODataController
+    public class ReportsController : ODataController
     {
-        private readonly CardInfoContext _context;
+        private readonly LMSVInfoContext _context;
         
-        public CardsController(CardInfoContext context)
+        public ReportsController(LMSVInfoContext context)
         {
             _context = context ?? 
                 throw new ArgumentNullException(nameof(context));
@@ -21,7 +21,7 @@ namespace LMSV.API.Controllers
 
         [HttpGet("Cards")]
         [EnableQuery]
-        public ActionResult<IQueryable<Card>> GetAllCards()
+        public ActionResult<IQueryable<Card>> GetCards()
         {
             return Ok(_context.Cards.AsQueryable<Card>());
         }
