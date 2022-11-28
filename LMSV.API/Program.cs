@@ -1,12 +1,16 @@
 using LMSV.API.DbContexts;
+using LMSV.API.EntityDataModels;
 using LMSV.API.Services;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddOData(opt =>
+    opt.AddRouteComponents("odata/reporting", new LMSVDataModel().GetEntityDataModel())
+        .Select().Filter().OrderBy().Count().SetMaxTop(5000));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,7 +20,8 @@ builder.Services.AddDbContext<CardInfoContext>(dbContextOptions => dbContextOpti
 
 builder.Services.AddScoped<ILMSVReportingRepository, LMSVReportingRepository>();
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//Only need this line if using DTOs
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
@@ -24,7 +29,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.DefaultModelsExpandDepth(-1);
+    });
 }
 
 app.UseHttpsRedirection();

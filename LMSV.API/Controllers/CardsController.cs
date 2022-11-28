@@ -1,41 +1,29 @@
 ﻿using AutoMapper;
-using LMSV.API.Models;
 using LMSV.API.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMSV.API.Controllers
 {
-    [ApiController]
-    [Route("api/reporting/cards")]
-    public class CardsController : ControllerBase
+    [Route("odata/reporting")]
+    public class CardsController : ODataController
     {
         private readonly ILMSVReportingRepository _lmsvReportingRepository;
-        private readonly IMapper _mapper;
 
-        public CardsController(ILMSVReportingRepository lmsvReportingRepository,
-            IMapper mapper)
+        public CardsController(ILMSVReportingRepository lmsvReportingRepository)
         {
             _lmsvReportingRepository = lmsvReportingRepository ??
                 throw new ArgumentNullException(nameof(lmsvReportingRepository));
-            _mapper = mapper ??
-                throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<CardDto>>> GetCards()
+        [HttpGet("Cards")]
+        [EnableQuery]
+        public async Task<IActionResult> GetAllCards()
         {
-            var cardEntities = await _lmsvReportingRepository.GetCardsAsync();
-
-            return Ok(_mapper.Map<IEnumerable<CardDto>>(cardEntities.Take(10)));
+            return Ok(await _lmsvReportingRepository.GetCardsAsync());
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<CardDto>>> GetCard(long id)
-        {
-            var card = await _lmsvReportingRepository.GetCardAsync(id);
-
-            return Ok(_mapper.Map<CardDto>(card));
-        }
     }
 }
