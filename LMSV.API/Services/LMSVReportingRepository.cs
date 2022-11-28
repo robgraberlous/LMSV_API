@@ -13,9 +13,9 @@ namespace LMSV.API.Services
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<IEnumerable<Card>> GetCardsAsync()
+        public IQueryable<Card> GetCards()
         {
-            return await _context.Cards.ToListAsync();
+            return _context.Cards.AsQueryable<Card>();
         }
     }
 }

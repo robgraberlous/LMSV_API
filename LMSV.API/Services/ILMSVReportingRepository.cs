@@ -4,6 +4,6 @@ namespace LMSV.API.Services
 {
     public interface ILMSVReportingRepository
     {
-        Task<IEnumerable<Card>> GetCardsAsync();
+        IQueryable<Card> GetCards();
     }
 }

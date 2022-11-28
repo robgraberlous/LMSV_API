@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers().AddOData(opt =>
-    opt.AddRouteComponents("odata/reporting", new LMSVDataModel().GetEntityDataModel())
+    opt.AddRouteComponents("api/reporting", new LMSVDataModel().GetEntityDataModel())
         .Select().Filter().OrderBy().Count().SetMaxTop(5000));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
