@@ -1,6 +1,5 @@
 using LMSV.API.DbContexts;
 using LMSV.API.EntityDataModels;
-using LMSV.API.Services;
 using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,11 +16,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<CardInfoContext>(dbContextOptions => dbContextOptions
     .UseSqlServer(builder.Configuration["ConnectionStrings:WebApiDatabase"]));
-
-builder.Services.AddScoped<ILMSVReportingRepository, LMSVReportingRepository>();
-
-//Only need this line if using DTOs
-//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

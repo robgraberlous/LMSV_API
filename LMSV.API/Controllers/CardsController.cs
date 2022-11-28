@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using LMSV.API.DbContexts;
 using LMSV.API.Entities;
-using LMSV.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
@@ -11,19 +11,19 @@ namespace LMSV.API.Controllers
     [Route("api/reporting")]
     public class CardsController : ODataController
     {
-        private readonly ILMSVReportingRepository _lmsvReportingRepository;
-
-        public CardsController(ILMSVReportingRepository lmsvReportingRepository)
+        private readonly CardInfoContext _context;
+        
+        public CardsController(CardInfoContext context)
         {
-            _lmsvReportingRepository = lmsvReportingRepository ??
-                throw new ArgumentNullException(nameof(lmsvReportingRepository));
+            _context = context ?? 
+                throw new ArgumentNullException(nameof(context));
         }
 
         [HttpGet("Cards")]
         [EnableQuery]
         public ActionResult<IQueryable<Card>> GetAllCards()
         {
-            return Ok(_lmsvReportingRepository.GetCards());
+            return Ok(_context.Cards.AsQueryable<Card>());
         }
 
     }
