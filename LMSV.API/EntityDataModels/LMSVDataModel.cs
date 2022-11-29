@@ -13,9 +13,10 @@ namespace LMSV.API.EntityDataModels
             builder.ContainerName = "LMSVContainer";
 
             builder.EntitySet<Card>("Cards");
-            builder.EntitySet<Transaction>("Transactions");
-            builder.EntitySet<EmsUser>("EmsUsers");
             builder.EntitySet<Client>("Clients");
+            builder.EntitySet<EmsUser>("EmsUsers");
+            builder.EntitySet<GiftCardType>("GiftCardTypes");
+            builder.EntitySet<Transaction>("Transactions");
 
             return builder.GetEdmModel();
         }
