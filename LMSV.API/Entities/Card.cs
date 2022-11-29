@@ -9,6 +9,7 @@ namespace LMSV.API.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
+
         public decimal Balance { get; set; } = 0.00M;
 
         [Required]

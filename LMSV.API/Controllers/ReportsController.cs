@@ -26,5 +26,19 @@ namespace LMSV.API.Controllers
             return Ok(_context.Cards.AsQueryable<Card>());
         }
 
+        [HttpGet("Transactions")]
+        [EnableQuery]
+        public ActionResult<IQueryable<Transaction>> GetTransactions()
+        {
+            //var list = from t in _context.Transactions
+            //           join c in _context.Cards
+            //            on t.cardId equals c.Id
+            //           select t;
+
+            //return Ok(list.AsQueryable<Transaction>());
+
+            return Ok(_context.Transactions.AsQueryable<Transaction>());
+        }
+
     }
 }
