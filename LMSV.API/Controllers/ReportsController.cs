@@ -26,6 +26,13 @@ namespace LMSV.API.Controllers
             return Ok(_context.Cards.AsQueryable<Card>());
         }
 
+        [HttpGet("Clients")]
+        [EnableQuery]
+        public ActionResult<IQueryable<Client>> GetClients()
+        {
+            return Ok(_context.Clients.AsQueryable<Client>());
+        }
+
         [HttpGet("EmsUsers")]
         [EnableQuery]
         public ActionResult<IQueryable<EmsUser>> GetEmsUsers()
