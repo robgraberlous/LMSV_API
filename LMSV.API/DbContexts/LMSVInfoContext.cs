@@ -26,8 +26,17 @@ namespace LMSV.API.DbContexts
             //    .Property(t => t.oldClientId)
             //    .HasComputedColumnSql("CASE WHEN LEN([clientId]) < 10 THEN CAST([clientId] AS INT) ELSE 0 END");
 
+            //modelBuilder
+            //    .Entity<Transaction>().Ignore(t => t.oldClientId);
+
             modelBuilder
-                .Entity<Transaction>().Ignore(t => t.oldClientId);
+                .Entity<Client>()
+                .Property(c => c.Id)
+                .HasConversion(
+                    v => int.Parse(v),
+                    v => v.ToString(),
+                    null
+                );
         }
     }
 }
