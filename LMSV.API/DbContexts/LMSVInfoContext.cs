@@ -16,5 +16,18 @@ namespace LMSV.API.DbContexts
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            //modelBuilder
+            //    .Entity<Transaction>()
+            //    .Property(t => t.oldClientId)
+            //    .HasComputedColumnSql("CASE WHEN LEN([clientId]) < 10 THEN CAST([clientId] AS INT) ELSE 0 END");
+
+            modelBuilder
+                .Entity<Transaction>().Ignore(t => t.oldClientId);
+        }
     }
 }

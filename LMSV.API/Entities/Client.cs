@@ -26,5 +26,10 @@ namespace LMSV.API.Entities
 
         [MaxLength(100)]
         public string? secret { get; set; }
+
+        //Navigation property - Children
+        public virtual ICollection<Transaction> Transactions { get; set; } =
+            new List<Transaction>();
+
     }
 }

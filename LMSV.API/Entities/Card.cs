@@ -20,7 +20,8 @@ namespace LMSV.API.Entities
         public string? pin { get; set; }
 
         [Required]
-        public string cardTypeId { get; set; } = string.Empty;
+        [Column(TypeName = "string")]
+        public int cardTypeId { get; set; }// = string.Empty;
 
         [Required]
         public byte active { get; set; } = 0;
@@ -39,5 +40,14 @@ namespace LMSV.API.Entities
         public DateTime? createdAt { get; set; }
 
         public DateTime? updatedAt { get; set; }
+
+        //Navigation Property - Parents
+        [ForeignKey("cardTypeId")]
+        public GiftCardType? GiftCardType { get; set; }
+
+        //Navigation property - Children
+        public virtual ICollection<Transaction> Transactions { get; set; } =
+            new List<Transaction>();
+
     }
 }

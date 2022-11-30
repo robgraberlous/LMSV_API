@@ -45,5 +45,27 @@ namespace LMSV.API.Entities
         [MaxLength(36)]
         public string clientId { get; set; } = string.Empty;
 
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int oldClientId
+        {
+            get
+            {
+                if (clientId.Length < 10)
+                    return int.Parse(clientId);
+                else
+                    return 0;
+            }
+            set { }
+        }
+
+        //Navigation Property - Parents
+        [ForeignKey("cardId")]
+        public Card? Card { get; set; }
+
+        //[ForeignKey("clientId")]
+        //public EmsUser? EmsUser { get; set; }
+
+        [ForeignKey("oldClientId")]
+        public Client? Client { get; set; }
     }
 }

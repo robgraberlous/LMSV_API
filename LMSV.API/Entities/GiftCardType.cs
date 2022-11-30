@@ -79,5 +79,9 @@ namespace LMSV.API.Entities
         [Required]
         [MaxLength(100)]
         public string emailTemplateId { get; set; } = string.Empty;
+
+        //Navigation property - Children
+        public virtual ICollection<Card> Cards { get; set; } =
+            new List<Card>();
     }
 }
