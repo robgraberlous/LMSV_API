@@ -30,6 +30,25 @@ namespace LMSV.API.DbContexts
             //    .Entity<Transaction>().Ignore(t => t.oldClientId);
 
             modelBuilder
+                .Entity<Transaction>()
+                .ToSqlQuery<Transaction>(
+                @"
+  SELECT [id]
+      ,[amount]
+      ,[type]
+      ,[reason]
+      ,[accountId]
+      ,[cardId]
+      ,[createdAt]
+      ,[transactionDate]
+      ,[message]
+      ,[terminalId]
+      ,[storeId]
+      ,CASE WHEN TRY_CONVERT(UNIQUEIDENTIFIER, [clientId]) IS NOT NULL THEN [clientId] ELSE '' END AS clientId
+	  ,CASE WHEN TRY_CONVERT(UNIQUEIDENTIFIER, [clientId]) IS NULL THEN [clientId] ELSE '' END AS oldClientId
+  FROM [transactions]");
+
+            modelBuilder
                 .Entity<Client>()
                 .Property(c => c.Id)
                 .HasConversion(
