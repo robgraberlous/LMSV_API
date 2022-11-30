@@ -42,19 +42,15 @@ namespace LMSV.API.Entities
         public int storeId { get; set; } = 0;
 
         [Required]
-        [MaxLength(36)]
-        public string? clientId { get; set; } = string.Empty;
+        public Guid EmsUserId { get; set; }
 
-        public string? oldClientId { get; set; } = string.Empty;
+        [Required]
+        public int ClientId { get; set; }
 
         //Navigation Property - Parents
         [ForeignKey("cardId")]
         public Card? Card { get; set; }
 
-        //[ForeignKey("clientId")]
-        //public EmsUser? EmsUser { get; set; }
-
-        //[ForeignKey("clientId")]
-        //public Client? Client { get; set; }
+        public EmsUser? EmsUser { get; set; }
     }
 }

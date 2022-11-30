@@ -8,8 +8,7 @@ namespace LMSV.API.Entities
     {
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column(TypeName = "int")]
-        public string Id { get; set; } = string.Empty;
+        public int Id { get; set; }// = string.Empty;
 
         [Required]
         [MaxLength(255)]
@@ -29,8 +28,8 @@ namespace LMSV.API.Entities
         public string? secret { get; set; }
 
         //Navigation property - Children
-        //public virtual ICollection<Transaction> Transactions { get; set; } =
-        //    new List<Transaction>();
+        public virtual ICollection<Transaction> Transactions { get; set; } =
+            new List<Transaction>();
 
     }
 }

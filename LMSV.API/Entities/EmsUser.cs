@@ -11,8 +11,7 @@ namespace LMSV.API.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-//        [Column(TypeName = "guid")]
-        public Guid Id { get; set; }// = string.Empty;
+        public Guid Id { get; set; }
 
         [Required]
         public DateTime? created_at { get; set; }

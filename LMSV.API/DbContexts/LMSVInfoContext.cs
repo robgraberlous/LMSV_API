@@ -21,17 +21,9 @@ namespace LMSV.API.DbContexts
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder
-            //    .Entity<Transaction>()
-            //    .Property(t => t.oldClientId)
-            //    .HasComputedColumnSql("CASE WHEN LEN([clientId]) < 10 THEN CAST([clientId] AS INT) ELSE 0 END");
-
-            //modelBuilder
-            //    .Entity<Transaction>().Ignore(t => t.oldClientId);
-
             modelBuilder
                 .Entity<Transaction>()
-                .ToSqlQuery<Transaction>(
+                .ToSqlQuery(
                 @"
   SELECT [id]
       ,[amount]
@@ -44,18 +36,14 @@ namespace LMSV.API.DbContexts
       ,[message]
       ,[terminalId]
       ,[storeId]
-      ,CASE WHEN TRY_CONVERT(UNIQUEIDENTIFIER, [clientId]) IS NOT NULL THEN [clientId] ELSE '' END AS clientId
-	  ,CASE WHEN TRY_CONVERT(UNIQUEIDENTIFIER, [clientId]) IS NULL THEN [clientId] ELSE '' END AS oldClientId
+      ,CASE WHEN 
+        TRY_CONVERT(UNIQUEIDENTIFIER, [clientId]) IS NOT NULL THEN TRY_CONVERT(UNIQUEIDENTIFIER, [clientId]) 
+        ELSE TRY_CONVERT(UNIQUEIDENTIFIER, '00000000-0000-0000-0000-000000000000') END AS EmsUserId
+      ,CASE WHEN 
+        TRY_CONVERT(UNIQUEIDENTIFIER, [clientId]) IS NULL THEN TRY_CONVERT(int, [clientId])
+        ELSE TRY_CONVERT(int, '0') END AS ClientId
   FROM [transactions]");
 
-            modelBuilder
-                .Entity<Client>()
-                .Property(c => c.Id)
-                .HasConversion(
-                    v => int.Parse(v),
-                    v => v.ToString(),
-                    null
-                );
         }
     }
 }
