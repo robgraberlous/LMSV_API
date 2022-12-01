@@ -48,6 +48,13 @@ namespace LMSV.API.Controllers
             return Ok(_context.GiftCardTypes.AsQueryable<GiftCardType>());
         }
 
+        [HttpGet("Stores")]
+        [EnableQuery]
+        public ActionResult<IQueryable<Store>> GetStores()
+        {
+            return Ok(_context.Stores.AsQueryable<Store>());
+        }
+
         [HttpGet("Transactions")]
         [EnableQuery]
         public ActionResult<IQueryable<Transaction>> GetTransactions()

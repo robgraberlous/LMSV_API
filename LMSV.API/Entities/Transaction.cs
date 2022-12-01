@@ -52,5 +52,7 @@ namespace LMSV.API.Entities
         public Card? Card { get; set; }
 
         public EmsUser? EmsUser { get; set; }
+
+        public Store? Store { get; set; }
     }
 }

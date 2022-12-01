@@ -9,6 +9,7 @@ namespace LMSV.API.DbContexts
         public DbSet<Client> Clients { get; set; } = null!;
         public DbSet<EmsUser> EmsUsers { get; set; } = null!;
         public DbSet<GiftCardType> GiftCardTypes { get; set; } = null!;
+        public DbSet<Store> Stores { get; set; } = null!;
         public DbSet<Transaction> Transactions { get; set; } = null!;
 
         public LMSVInfoContext(DbContextOptions<LMSVInfoContext> options)
