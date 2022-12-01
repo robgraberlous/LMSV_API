@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LMSV.API.STSModels;
 
 [Table("Card_Trans")]
-public partial class CardTran
+public partial class STSCardTran
 {
     [Key]
     [Column("card_trans_pk")]

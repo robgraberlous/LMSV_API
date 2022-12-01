@@ -15,6 +15,9 @@ namespace LMSV.API.EntityDataModels
             builder.EntitySet<STSAddress>("Addresses");
             builder.EntitySet<STSCard>("Cards");
             builder.EntitySet<STSCardOrder>("CardOrders");
+            builder.EntitySet<STSCardTran>("CardTrans");
+            builder.EntitySet<STSChain>("Chains");
+            builder.EntitySet<STSClerk>("Clerks");
             //builder.EntitySet<Client>("Clients");
             //builder.EntitySet<EmsUser>("EmsUsers");
             //builder.EntitySet<GiftCardType>("GiftCardTypes");

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LMSV.API.STSModels;
 
 [Table("Clerk")]
-public partial class Clerk
+public partial class STSClerk
 {
     [Column("entity_id")]
     public string? EntityId { get; set; }

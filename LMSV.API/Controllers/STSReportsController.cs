@@ -64,5 +64,50 @@ namespace LMSV.API.Controllers
                 return NotFound();
             return Ok(card);
         }
+
+        [HttpGet("CardTrans")]
+        [HttpGet("CardTrans({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSCardTran>> GetCardTrans(int? key)
+        {
+            if (key == null)
+                return Ok(_context.CardTrans.AsQueryable<STSCardTran>());
+
+            var cardTran = _context.CardTrans
+                .FirstOrDefault(c => c.CardTransPk == key);
+            if (cardTran == null)
+                return NotFound();
+            return Ok(cardTran);
+        }
+
+        [HttpGet("Chains")]
+        [HttpGet("Chains({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSChain>> GetChains(decimal? key)
+        {
+            if (key == null)
+                return Ok(_context.Chains.AsQueryable<STSChain>());
+
+            var chain = _context.Chains
+                .FirstOrDefault(c => c.ChainPk == key);
+            if (chain == null)
+                return NotFound();
+            return Ok(chain);
+        }
+
+        [HttpGet("Clerks")]
+        [HttpGet("Clerks({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSClerk>> GetClerks(decimal? key)
+        {
+            if (key == null)
+                return Ok(_context.Clerks.AsQueryable<STSClerk>());
+
+            var clerk = _context.Clerks
+                .FirstOrDefault(c => c.ClerkPk == key);
+            if (clerk == null)
+                return NotFound();
+            return Ok(clerk);
+        }
     }
 }

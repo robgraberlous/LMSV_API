@@ -22,11 +22,11 @@ public partial class GcStsdataContext : DbContext
 
     public virtual DbSet<STSCardOrder> CardOrders { get; set; }
 
-    public virtual DbSet<CardTran> CardTrans { get; set; }
+    public virtual DbSet<STSCardTran> CardTrans { get; set; }
 
-    public virtual DbSet<Chain> Chains { get; set; }
+    public virtual DbSet<STSChain> Chains { get; set; }
 
-    public virtual DbSet<Clerk> Clerks { get; set; }
+    public virtual DbSet<STSClerk> Clerks { get; set; }
 
     public virtual DbSet<Merchant> Merchants { get; set; }
 
@@ -48,7 +48,7 @@ public partial class GcStsdataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<CardTran>(entity =>
+        modelBuilder.Entity<STSCardTran>(entity =>
         {
             entity.Property(e => e.CardTransPk).ValueGeneratedNever();
         });

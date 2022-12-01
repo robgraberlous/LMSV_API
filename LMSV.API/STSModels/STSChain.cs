@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LMSV.API.STSModels;
 
 [Table("Chain")]
-public partial class Chain
+public partial class STSChain
 {
     [Key]
     [Column("chain_pk", TypeName = "decimal(18, 2)")]
