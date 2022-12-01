@@ -27,13 +27,14 @@ namespace LMSV.API.DbContexts
                 .ToSqlQuery(
                 @"
   SELECT [id]
-      ,[amount]
+      ,CASE WHEN [type] IN ('redemption', 'refund') 
+        OR ([type] = 'adjustment' AND [reason] = 'refund') THEN -[amount] ELSE [amount] END AS [amount]
       ,[type]
       ,[reason]
       ,[accountId]
       ,[cardId]
       ,[createdAt]
-      ,[transactionDate]
+      ,CONVERT(DATETIME, DATEADD(hh, -6, [transactionDate]) AT TIME ZONE 'UTC' AT TIME ZONE 'Central Standard Time') AS [transactionDate]
       ,[message]
       ,[terminalId]
       ,[storeId]
