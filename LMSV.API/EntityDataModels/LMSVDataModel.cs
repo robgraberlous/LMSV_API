@@ -16,6 +16,7 @@ namespace LMSV.API.EntityDataModels
             builder.EntitySet<Client>("Clients");
             builder.EntitySet<EmsUser>("EmsUsers");
             builder.EntitySet<GiftCardType>("GiftCardTypes");
+            builder.EntitySet<Store>("Stores");
             builder.EntitySet<Transaction>("Transactions");
 
             return builder.GetEdmModel();

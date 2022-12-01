@@ -10,6 +10,7 @@ namespace LMSV.API.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
+        [Column(TypeName = "decimal(10,2)")]
         public decimal Balance { get; set; } = 0.00M;
 
         [Required]

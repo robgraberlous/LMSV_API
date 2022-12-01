@@ -11,6 +11,7 @@ namespace LMSV.API.Entities
         public int Id { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(10,2)")]
         public decimal amount { get; set; } = 0.00M;
 
         [Required]
