@@ -10,12 +10,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddOData(opt =>
     opt.AddRouteComponents("api/reporting", new LMSVDataModel().GetEntityDataModel())
         .Select().Filter().OrderBy().Count().Expand().SetMaxTop(5000));
+builder.Services.AddControllers().AddOData(opt =>
+    opt.AddRouteComponents("api/reporting/STS", new STSDataModel().GetEntityDataModel())
+        .Select().Filter().OrderBy().Count().Expand().SetMaxTop(5000));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<LMSVInfoContext>(dbContextOptions => dbContextOptions
-    .UseSqlServer(builder.Configuration["ConnectionStrings:WebApiDatabase"]));
+    .UseSqlServer(builder.Configuration["ConnectionStrings:LOUS_EMS"]));
+
+builder.Services.AddDbContext<GcStsdataContext>(dbContextOptions => dbContextOptions
+    .UseSqlServer(builder.Configuration["ConnectionStrings:STS_GCSTSData"]));
+
 
 var app = builder.Build();
 
