@@ -12,7 +12,9 @@ namespace LMSV.API.EntityDataModels
             builder.Namespace = "STS";
             builder.ContainerName = "STSContainer";
 
+            builder.EntitySet<STSAddress>("Addresses");
             builder.EntitySet<STSCard>("Cards");
+            builder.EntitySet<STSCardOrder>("CardOrders");
             //builder.EntitySet<Client>("Clients");
             //builder.EntitySet<EmsUser>("EmsUsers");
             //builder.EntitySet<GiftCardType>("GiftCardTypes");

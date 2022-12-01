@@ -16,11 +16,11 @@ public partial class GcStsdataContext : DbContext
     {
     }
 
-    public virtual DbSet<Address> Addresses { get; set; }
+    public virtual DbSet<STSAddress> Addresses { get; set; }
 
     public virtual DbSet<STSCard> Cards { get; set; }
 
-    public virtual DbSet<CardOrder> CardOrders { get; set; }
+    public virtual DbSet<STSCardOrder> CardOrders { get; set; }
 
     public virtual DbSet<CardTran> CardTrans { get; set; }
 

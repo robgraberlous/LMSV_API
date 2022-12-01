@@ -20,6 +20,36 @@ namespace LMSV.API.Controllers
                 throw new ArgumentNullException(nameof(context));
         }
 
+        [HttpGet("Addresses")]
+        [HttpGet("Addresses({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSAddress>> GetAddresses(decimal? key)
+        {
+            if (key == null)
+                return Ok(_context.Addresses.AsQueryable<STSAddress>());
+            
+            var address = _context.Addresses
+                .FirstOrDefault(c => c.AddressPk == key);
+            if (address == null)
+                return NotFound();
+            return Ok(address);
+        }
+
+        [HttpGet("CardOrders")]
+        [HttpGet("CardOrders({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSCard>> GetCardOrders(decimal? key)
+        {
+            if (key == null)
+                return Ok(_context.CardOrders.AsQueryable<STSCardOrder>());
+
+            var cardOrder = _context.CardOrders
+                .FirstOrDefault(c => c.CardOrdersPk == key);
+            if (cardOrder == null)
+                return NotFound();
+            return Ok(cardOrder);
+        }
+
         [HttpGet("Cards")]
         [HttpGet("Cards({key})")]
         [EnableQuery]
@@ -27,13 +57,12 @@ namespace LMSV.API.Controllers
         {
             if (key == null)
                 return Ok(_context.Cards.AsQueryable<STSCard>());
-            
+
             var card = _context.Cards
                 .FirstOrDefault(c => c.CardNumber == key);
             if (card == null)
                 return NotFound();
             return Ok(card);
         }
-
     }
 }
