@@ -9,7 +9,7 @@ using System.Diagnostics.Eventing.Reader;
 
 namespace LMSV.API.Controllers
 {
-    [Route("api/reporting/STS")]
+    [Route("api/reporting")]
     public class STSReportsController : ODataController
     {
         private readonly GcStsdataContext _context;
@@ -50,8 +50,8 @@ namespace LMSV.API.Controllers
             return Ok(cardOrder);
         }
 
-        [HttpGet("Cards")]
-        [HttpGet("Cards({key})")]
+        [HttpGet("STSCards")]
+        [HttpGet("STSCards({key})")]
         [EnableQuery]
         public ActionResult<IQueryable<STSCard>> GetCards(string? key)
         {
