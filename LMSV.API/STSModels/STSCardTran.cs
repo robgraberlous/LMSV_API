@@ -101,4 +101,11 @@ public partial class STSCardTran
 
     [Column("port_number")]
     public int? PortNumber { get; set; }
+
+    //Navigation - Parents
+    [ForeignKey("CardNumberFk")]
+    public STSCard? STSCard { get; set; }
+
+    [ForeignKey("ProductFk")]
+    public STSProduct? Product { get; set; }
 }

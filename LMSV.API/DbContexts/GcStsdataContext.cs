@@ -51,6 +51,40 @@ public partial class GcStsdataContext : DbContext
         modelBuilder.Entity<STSCardTran>(entity =>
         {
             entity.Property(e => e.CardTransPk).ValueGeneratedNever();
+            entity.ToSqlQuery(
+                @"
+    SELECT [card_trans_pk]
+	    ,[activation_location]
+	    ,[batch_fk]
+	    ,[card_number_fk]
+	    ,[chip_value]
+	    ,[create_date]
+	    ,[created_by]
+	    ,[description]
+	    ,[fee_settlement_fk]
+	    ,[hand_keyed]
+	    ,[instant_reward]
+	    ,[item_code]
+	    ,[last_update_date]
+	    ,[last_updated_by]
+	    ,[manual_post_flag]
+	    ,[merchant_id]
+	    ,[other_purchase_amt]
+	    ,[port_number]
+	    ,[product_fk]
+	    ,[quantity]
+	    ,[rebate_base]
+	    ,[ref]
+	    ,[settlement_fk]
+	    ,[source]
+	    ,[timezone]
+        ,CASE WHEN [trans_code] = 10 THEN -[trans_amount] ELSE [trans_amount] END AS [trans_amount]
+	    ,[trans_code]
+	    ,[trans_date]
+	    ,[trans_seq_no]
+	    ,[trans_time]
+    FROM [Card_Trans]");
+
         });
 
         modelBuilder.Entity<STSMerchant>(entity =>

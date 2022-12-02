@@ -23,6 +23,31 @@ namespace LMSV.API.DbContexts
             base.OnModelCreating(modelBuilder);
 
             modelBuilder
+                .Entity<EmsUser>()
+                .ToSqlQuery(
+                @"
+    SELECT TOP (1000) [active]
+        ,[id]
+        ,[created_at]
+        ,[updated_at]
+        ,[name]
+        ,[email]
+        ,[phone]
+        ,[emailVerified]
+        ,[image]
+    FROM [emsBackend].[users]
+    union
+    select 0
+    ,TRY_CONVERT(UNIQUEIDENTIFIER, '00000000-0000-0000-0000-000000000000')
+    ,SYSUTCDATETIME()
+    ,SYSUTCDATETIME()
+    ,''
+    ,''
+    ,''
+    ,''
+    ,''");
+            
+                modelBuilder
                 .Entity<Transaction>()
                 .ToSqlQuery(
                 @"

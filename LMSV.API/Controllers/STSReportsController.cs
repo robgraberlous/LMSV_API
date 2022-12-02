@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-using LMSV.API.DbContexts;
+﻿using LMSV.API.DbContexts;
 using LMSV.API.STSModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Eventing.Reader;
 
 namespace LMSV.API.Controllers
 {
@@ -13,10 +10,10 @@ namespace LMSV.API.Controllers
     public class STSReportsController : ODataController
     {
         private readonly GcStsdataContext _context;
-        
+
         public STSReportsController(GcStsdataContext context)
         {
-            _context = context ?? 
+            _context = context ??
                 throw new ArgumentNullException(nameof(context));
         }
 
@@ -27,7 +24,7 @@ namespace LMSV.API.Controllers
         {
             if (key == null)
                 return Ok(_context.Addresses.AsQueryable<STSAddress>());
-            
+
             var address = _context.Addresses
                 .FirstOrDefault(c => c.AddressPk == key);
             if (address == null)

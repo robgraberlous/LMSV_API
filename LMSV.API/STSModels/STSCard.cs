@@ -235,4 +235,9 @@ public partial class STSCard
     [StringLength(50)]
     [Unicode(false)]
     public string? MobilePhone { get; set; }
+
+    //Navigation - Parents
+    [ForeignKey("ProductFk")]
+    public STSProduct? Product { get; set; }
+
 }

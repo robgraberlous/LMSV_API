@@ -27,4 +27,7 @@ public partial class STSProduct
 
     [Column("create_date")]
     public DateTime CreateDate { get; set; }
+
+    //Navigation - Children
+    public ICollection<STSCard> Cards { get; set; } = new List<STSCard>();
 }
