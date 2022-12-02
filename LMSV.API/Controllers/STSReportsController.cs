@@ -109,5 +109,111 @@ namespace LMSV.API.Controllers
                 return NotFound();
             return Ok(clerk);
         }
+
+        [HttpGet("Merchants")]
+        [HttpGet("Merchants({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSMerchant>> GetMerchants(int? key)
+        {
+            if (key == null)
+                return Ok(_context.Merchants.AsQueryable<STSMerchant>());
+
+            var merchant = _context.Merchants
+                .FirstOrDefault(c => c.MerchantPk == key);
+            if (merchant == null)
+                return NotFound();
+            return Ok(merchant);
+        }
+
+        [HttpGet("Products")]
+        [HttpGet("Products({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSProduct>> GetProducts(int? key)
+        {
+            if (key == null)
+                return Ok(_context.Products.AsQueryable<STSProduct>());
+
+            var product = _context.Products
+                .FirstOrDefault(c => c.ProductPk == key);
+            if (product == null)
+                return NotFound();
+            return Ok(product);
+        }
+
+        [HttpGet("Terminals")]
+        [HttpGet("Terminals({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSTerminal>> GetTerminals(decimal? key)
+        {
+            if (key == null)
+                return Ok(_context.Terminals.AsQueryable<STSTerminal>());
+
+            var terminal = _context.Terminals
+                .FirstOrDefault(c => c.TerminalPk == key);
+            if (terminal == null)
+                return NotFound();
+            return Ok(terminal);
+        }
+
+        [HttpGet("ValidProducts")]
+        [HttpGet("ValidProducts({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSValidProduct>> GetValidProducts(decimal? key)
+        {
+            if (key == null)
+                return Ok(_context.ValidProducts.AsQueryable<STSValidProduct>());
+
+            var validProduct = _context.ValidProducts
+                .FirstOrDefault(c => c.ValidProductsPk == key);
+            if (validProduct == null)
+                return NotFound();
+            return Ok(validProduct);
+        }
+
+        [HttpGet("Venues")]
+        [HttpGet("Venues({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSVenue>> GetVenues(decimal? key)
+        {
+            if (key == null)
+                return Ok(_context.Venues.AsQueryable<STSVenue>());
+
+            var venue = _context.Venues
+                .FirstOrDefault(c => c.VenuePk == key);
+            if (venue == null)
+                return NotFound();
+            return Ok(venue);
+        }
+
+        [HttpGet("WtConfigs")]
+        [HttpGet("WtConfigs({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSWtConfig>> GetWtConfigs(decimal? key)
+        {
+            if (key == null)
+                return Ok(_context.WtConfigs.AsQueryable<STSWtConfig>());
+
+            var wtConfig = _context.WtConfigs
+                .FirstOrDefault(c => c.WtConfigPk == key);
+            if (wtConfig == null)
+                return NotFound();
+            return Ok(wtConfig);
+        }
+
+        [HttpGet("WtUsers")]
+        [HttpGet("WtUsers({key})")]
+        [EnableQuery]
+        public ActionResult<IQueryable<STSWtUser>> GetWtUsers(decimal? key)
+        {
+            if (key == null)
+                return Ok(_context.WtUsers.AsQueryable<STSWtUser>());
+
+            var wtUser = _context.WtUsers
+                .FirstOrDefault(c => c.WtUsersPk == key);
+            if (wtUser == null)
+                return NotFound();
+            return Ok(wtUser);
+        }
+
     }
 }

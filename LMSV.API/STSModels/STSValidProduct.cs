@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LMSV.API.STSModels;
 
 [Table("Valid_Products")]
-public partial class ValidProduct
+public partial class STSValidProduct
 {
     [Key]
     [Column("valid_products_pk", TypeName = "decimal(18, 2)")]

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LMSV.API.STSModels;
 
 [Table("Merchant")]
-public partial class Merchant
+public partial class STSMerchant
 {
     [Key]
     [Column("merchant_pk")]

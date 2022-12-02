@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LMSV.API.STSModels;
 
 [Table("Terminal")]
-public partial class Terminal
+public partial class STSTerminal
 {
     [Key]
     [Column("terminal_pk", TypeName = "decimal(18, 2)")]

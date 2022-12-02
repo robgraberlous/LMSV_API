@@ -28,19 +28,19 @@ public partial class GcStsdataContext : DbContext
 
     public virtual DbSet<STSClerk> Clerks { get; set; }
 
-    public virtual DbSet<Merchant> Merchants { get; set; }
+    public virtual DbSet<STSMerchant> Merchants { get; set; }
 
-    public virtual DbSet<Product> Products { get; set; }
+    public virtual DbSet<STSProduct> Products { get; set; }
 
-    public virtual DbSet<Terminal> Terminals { get; set; }
+    public virtual DbSet<STSTerminal> Terminals { get; set; }
 
-    public virtual DbSet<ValidProduct> ValidProducts { get; set; }
+    public virtual DbSet<STSValidProduct> ValidProducts { get; set; }
 
-    public virtual DbSet<Venue> Venues { get; set; }
+    public virtual DbSet<STSVenue> Venues { get; set; }
 
-    public virtual DbSet<WtConfig> WtConfigs { get; set; }
+    public virtual DbSet<STSWtConfig> WtConfigs { get; set; }
 
-    public virtual DbSet<WtUser> WtUsers { get; set; }
+    public virtual DbSet<STSWtUser> WtUsers { get; set; }
 
 //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -53,12 +53,12 @@ public partial class GcStsdataContext : DbContext
             entity.Property(e => e.CardTransPk).ValueGeneratedNever();
         });
 
-        modelBuilder.Entity<Merchant>(entity =>
+        modelBuilder.Entity<STSMerchant>(entity =>
         {
             entity.Property(e => e.MerchantPk).ValueGeneratedNever();
         });
 
-        modelBuilder.Entity<Product>(entity =>
+        modelBuilder.Entity<STSProduct>(entity =>
         {
             entity.Property(e => e.ProductPk).ValueGeneratedNever();
         });

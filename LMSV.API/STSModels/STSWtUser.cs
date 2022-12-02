@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LMSV.API.STSModels;
 
 [Table("WT_Users")]
-public partial class WtUser
+public partial class STSWtUser
 {
     [Key]
     [Column("wt_users_pk", TypeName = "decimal(18, 2)")]
