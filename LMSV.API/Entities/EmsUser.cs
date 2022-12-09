@@ -7,7 +7,7 @@ namespace LMSV.API.Entities
     public class EmsUser
     {
         [Required]
-        public short active { get; set; } = 0;
+        public Int16 active { get; set; } = 0;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

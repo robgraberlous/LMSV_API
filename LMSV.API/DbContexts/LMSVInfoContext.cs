@@ -37,7 +37,7 @@ namespace LMSV.API.DbContexts
         ,[image]
     FROM [emsBackend].[users]
     union
-    select 0
+    select CONVERT(SMALLINT, 0)
     ,TRY_CONVERT(UNIQUEIDENTIFIER, '00000000-0000-0000-0000-000000000000')
     ,SYSUTCDATETIME()
     ,SYSUTCDATETIME()
